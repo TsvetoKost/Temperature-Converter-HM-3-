@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class Main {
-
+    private static final int FAHRENHEIT_OFFSET = 32;
     public static void main(String[] args) {
         System.out.println("Temperature Converter");
         System.out.println("Version 1.0.");
@@ -19,9 +19,9 @@ public class Main {
                 int conv_choice = readChoice(scan);
                 double value = readValue(scan, conv_choice);
                 if (conv_choice == 1) {
-                    System.out.printf("Result: %.2f °C%n", (value - 32) * 5 / 9);
+                    System.out.printf("Result: %.2f °C%n", (value - FAHRENHEIT_OFFSET) * 5 / 9);
                 } else {
-                    System.out.printf("Result: %.2f °F%n", value * 9 / 5 + 32);
+                    System.out.printf("Result: %.2f °F%n", value * 9 / 5 + FAHRENHEIT_OFFSET);
                 }
             } else {
                 System.out.println("Goodbye!");
