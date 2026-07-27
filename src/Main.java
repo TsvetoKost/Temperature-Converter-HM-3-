@@ -13,8 +13,16 @@ public class Main {
 
             int choice = readChoice(scan);
             if (choice == 1) {
-                double value = readValue(scan);
-                System.out.printf("Result: %.2f °C%n", (value - 32) * 5 / 9);
+                System.out.println("1 - Fahrenheit to Celsius");
+                System.out.println("2 - Celsius to Fahrenheit");
+
+                int conv_choice = readChoice(scan);
+                double value = readValue(scan, conv_choice);
+                if (conv_choice == 1) {
+                    System.out.printf("Result: %.2f °C%n", (value - 32) * 5 / 9);
+                } else {
+                    System.out.printf("Result: %.2f °F%n", value * 9 / 5 + 32);
+                }
             } else {
                 System.out.println("Goodbye!");
                 scan.close();
@@ -39,15 +47,12 @@ public class Main {
         }
     }
 
-    private static double readValue(Scanner scan) {
+    private static double readValue(Scanner scan, int choice) {
         while (true) {
-            System.out.print("Fahrenheit: ");
+            String label = (choice == 1) ? "Fahrenheit" : "Celsius";
+            System.out.print(label + ": ");
             if (scan.hasNextDouble()) {
-                double value = scan.nextDouble();
-                if (value >= 0) {
-                    return value;
-                }
-                System.out.println("Value cannot be negative.");
+                return scan.nextDouble();
             } else {
                 System.out.println("Please enter a number.");
                 scan.next();
